@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, FormGroup, FormControl} from 'react-bootstrap';
+import { Button, FormGroup, FormControl } from 'react-bootstrap';
 import './App.css'
 
 export default class Home extends Component {
@@ -20,7 +20,7 @@ export default class Home extends Component {
 
     handleChange = event => {
         this.setState({
-            [event.target.id]: event.target.value
+            code: event.target.value
         });
     }
 
@@ -52,14 +52,8 @@ export default class Home extends Component {
         return (
             <div className="Home">
                 <form>
-                    <FormGroup controlId="code">
-                    <FormControl
-                        autoFocus
-                        type="text"
-                        placeholder="Your Code"
-                        value={this.state.code}
-                        onChange={this.handleChange} />
-                    </FormGroup>
+                    <div className="Hash">
+                    Your unique hash<br/>
                     <FormGroup controlId="text">
                     <FormControl
                         readOnly
@@ -68,7 +62,20 @@ export default class Home extends Component {
                         value={this.state.hash}
                         onChange={this.handleChange} />
                     </FormGroup>
+                    </div>
                     <br/>
+                    <div className="Code">
+                    Place for Your Code<br/>
+                    <textarea name="code" rows="30" cols="54" onChange={this.handleChange}> </textarea>
+                    {/*<FormGroup controlId="code">*/}
+                        {/*<FormControl*/}
+                            {/*autoFocus*/}
+                            {/*type="text"*/}
+                            {/*value={this.state.code}*/}
+                            {/*onChange={this.handleChange} />*/}
+                    {/*</FormGroup>*/}
+                    </div>
+                    <div className="Button">
                     <Button
                         block
                         type="submit"
@@ -77,6 +84,7 @@ export default class Home extends Component {
                         >
                         Paste Code
                     </Button>
+                    </div>
                 </form>
             </div>
         );

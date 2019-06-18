@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FormGroup, FormControl} from 'react-bootstrap';
+import { Button, FormGroup, FormControl } from 'react-bootstrap';
 
 export default class Task extends Component {
     constructor(props) {
@@ -22,13 +22,23 @@ export default class Task extends Component {
             <div className={"Task"}>
                 <form>
                     <FormGroup controlId="text">
-                        <FormControl
-                            readOnly
-                            type="text"
-                            placeholder="Your Code"
-                            value={this.state.data.code} />
+                        <textarea name="code" rows="30" cols="54" value={this.state.data.code} />
+                        {/*<FormControl*/}
+                            {/*readOnly*/}
+                            {/*type="text"*/}
+                            {/*placeholder="Your Code"*/}
+                        {/*/>*/}
                     </FormGroup>
                 </form>
+                <br/>
+                <div className="Link">
+                    <Button
+                        block
+                        type="submit"
+                    >
+                        <a href="/">Powrot</a>
+                    </Button>
+                </div>
             </div>
         );
     }

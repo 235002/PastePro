@@ -33,19 +33,36 @@
 }
 
 .Home {
-  margin: 100px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20vh;
+  padding: 40px;
   border: 1px solid red;
-  width: 800px;
-  height: 800px;
-  align-content: center;
-  justify-content: center;
+  width: 400px;
+  height: 600px;
+  align-items: flex-end;
+  justify-items: center;
 }
 
+.Button {
+  align-items: flex-end;
+}
+
+
 .Task {
-  margin: 100px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20vh;
+  padding: 40px;
   border: 1px solid blue;
-  width: 800px;
-  height: 800px;
-  align-content: center;
-  justify-content: center;
+  width: 400px;
+  height: 600px;
+  align-items: flex-end;
+  justify-items: center;
+}
+
+a {
+  text-decoration: none;
 }
