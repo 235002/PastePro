@@ -25,7 +25,7 @@ public class PasteController {
         this.pasteRepo = pasteRepo;
     }
 
-    @GetMapping("/paste/{id}")
+    @GetMapping("/paste2/{id}")
     public ResponseEntity<?> getPaste(@PathVariable Long id)
     {
         Optional<Paste> pastes = pasteRepo.findById(id);
@@ -35,14 +35,13 @@ public class PasteController {
 
     @GetMapping("/paste/{hash}")
     public ResponseEntity<?> getCode(@PathVariable String hash) {
-        List<Paste> result = new ArrayList<>();
-        result = pasteRepo.findByHash(hash);
+        Paste result = pasteRepo.findByHash(hash);
         return new ResponseEntity(result, HttpStatus.OK);
     }
 
     @PostMapping("/paste")
     public ResponseEntity<?> createPaste(@RequestBody Paste paste) {
         pasteRepo.save(paste);
-        return new ResponseEntity("Expense added succcessfully", HttpStatus.OK);
+        return new ResponseEntity("Paste added succcessfully", HttpStatus.OK);
     }
 }

@@ -5,26 +5,28 @@ export default class Task extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            hash: this.props.hash,
-            code: this.props.code
+            data: []
         }
     }
 
     componentDidMount(){
-        fetch('http://localhost:8080/api/')
+        fetch('http://localhost:8080/api/paste/' + this.props.match.params.hash)
+            .then(response => response.json())
+            .then(data=>{
+                this.setState({data});
+            });
     }
 
     render() {
         return (
             <div className={"Task"}>
-                <form onSubmit={this.handleSubmit}>
-                    TASK
+                <form>
                     <FormGroup controlId="text">
                         <FormControl
                             readOnly
                             type="text"
                             placeholder="Your Code"
-                            value={this.state.code} />
+                            value={this.state.data.code} />
                     </FormGroup>
                 </form>
             </div>

@@ -10,7 +10,7 @@ class App extends Component {
             <Router>
                 <Switch>
                     <Route path = '/' exact = {true} component = {Home}/>
-                    <Route path = '/task' component={Task}/>
+                    <Route path = '/task/:hash' component={Task}/>
                 </Switch>
             </Router>
         );

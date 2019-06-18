@@ -7,11 +7,11 @@ export default class Home extends Component {
         super(props)
         this.state = {
             hash: this.generateHash(),
-            code: props.code
+            code: ""
         }
         this.validateForm = this.validateForm.bind(this)
         this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
 
     validateForm() {
@@ -24,16 +24,22 @@ export default class Home extends Component {
         });
     }
 
-    handleSubmit = (event, {history}) => {
-        if (this.state.validateForm() !== false) {
-            history.push(`/task/${this.state.hash}`);
-        }
+    handleClick() {
+            fetch('http://localhost:8080/api/paste',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(this.state)
+                }).then(response => response.json());
+            this.props.history.push('/task/'+this.state.hash);
     }
 
     generateHash() {
         var length = 16;
-        var result           = '';
-        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var result           = "";
+        var characters       = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         var charactersLength = characters.length;
         for ( var i = 0; i < length; i++ ) {
             result += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -42,20 +48,11 @@ export default class Home extends Component {
         return result;
     }
 
-    componentDidMount(){
-        fetch('http://localhost:8080/api/paste')
-            .then(response => response.json())
-            .then(data=>{
-                console.log(data);
-                this.setState({data});
-            })
-    }
-
     render() {
         return (
             <div className="Home">
-                <form onSubmit={this.handleSubmit}>
-                    <FormGroup controlId="text">
+                <form>
+                    <FormGroup controlId="code">
                     <FormControl
                         autoFocus
                         type="text"
@@ -75,17 +72,12 @@ export default class Home extends Component {
                     <Button
                         block
                         type="submit"
-                        bsSize="large"
                         disabled={!this.validateForm()}
-                        onClick={this.handleSubmit}
+                        onClick={this.handleClick}
                         >
                         Paste Code
                     </Button>
                 </form>
-                <div className={"ABC"}>
-                    ${this.state.code}
-                    ${this.state.hash}
-                </div>
             </div>
         );
     }
