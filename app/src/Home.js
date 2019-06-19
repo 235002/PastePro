@@ -32,7 +32,7 @@ export default class Home extends Component {
                         'Accept': 'application/json'
                     },
                     body: JSON.stringify(this.state)
-                }).then(response => response.json());
+                });
             this.props.history.push('/task/'+this.state.hash);
     }
 
@@ -53,27 +53,22 @@ export default class Home extends Component {
             <div className="Home">
                 <form>
                     <div className="Hash">
-                    Your unique hash<br/>
-                    <FormGroup controlId="text">
+                  <span className="myLabel">Your unique hash</span><br/>
+                    <FormGroup controlId="text" className="myForm">
                     <FormControl
                         readOnly
                         type="text"
                         placeholder="Hash"
                         value={this.state.hash}
-                        onChange={this.handleChange} />
+                        onChange={this.handleChange}
+                        className="myInput" />
                     </FormGroup>
                     </div>
                     <br/>
                     <div className="Code">
-                    Place for Your Code<br/>
-                    <textarea name="code" rows="30" cols="54" onChange={this.handleChange}> </textarea>
-                    {/*<FormGroup controlId="code">*/}
-                        {/*<FormControl*/}
-                            {/*autoFocus*/}
-                            {/*type="text"*/}
-                            {/*value={this.state.code}*/}
-                            {/*onChange={this.handleChange} />*/}
-                    {/*</FormGroup>*/}
+                   <span className="myLabel2">Place for Your Code</span><br/>
+                    <textarea className="myForm" name="code" rows="30" cols="54" onChange={this.handleChange}> </textarea>
+                  
                     </div>
                     <div className="Button">
                     <Button
